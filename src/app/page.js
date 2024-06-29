@@ -1,113 +1,455 @@
+"use client"
+import { DatePickerWithRange } from "@/components/DateRangePicker";
+import GuestsPicker from "@/components/GuestsPicker";
+import HotelCard from "@/components/HotelCard";
+import NavBar from "@/components/shared/NavBar";
+import { Button } from "@/components/ui/button";
+import { BedDoubleIcon, DollarSignIcon, House, Search } from "lucide-react";
 import Image from "next/image";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { PersonIcon } from "@radix-ui/react-icons";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Slider } from "@/components/ui/slider";
+import { useEffect, useState } from "react";
+
+
+
+
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+    <main className="">
+      <NavBar />
+      <HeroSection />
+      <HotelRooms />
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-full sm:before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full sm:after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore starter templates for Next.js.
-          </p>
-        </a>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+
     </main>
   );
+}
+
+function HotelRooms() {
+
+
+  const roomsArray = [
+    { name: "Deluxe Suite", price: 15000, beds: "3 beds" },
+    { name: "Standard Room", price: 12000, beds: "2 beds" },
+    { name: "Presidential Suite", price: 18000, beds: "4 beds" },
+    { name: "Executive Room", price: 13500, beds: "1 bed" },
+    { name: "Penthouse Suite", price: 16500, beds: "3 beds" },
+    { name: "Family Suite", price: 14500, beds: "2 beds" },
+    { name: "Deluxe Suite", price: 15500, beds: "4 beds" },
+    { name: "Standard Room", price: 12500, beds: "2 beds" },
+    { name: "Presidential Suite", price: 18500, beds: "3 beds" },
+    { name: "Executive Room", price: 13000, beds: "1 bed" },
+    { name: "Penthouse Suite", price: 17000, beds: "3 beds" },
+    { name: "Family Suite", price: 14000, beds: "2 beds" },
+    { name: "Deluxe Suite", price: 16000, beds: "4 beds" },
+    { name: "Standard Room", price: 13000, beds: "2 beds" },
+    { name: "Presidential Suite", price: 19000, beds: "3 beds" },
+    { name: "Executive Room", price: 14000, beds: "1 bed" },
+    { name: "Penthouse Suite", price: 17500, beds: "3 beds" },
+    { name: "Family Suite", price: 15000, beds: "2 beds" },
+    { name: "Deluxe Suite", price: 16500, beds: "4 beds" },
+    { name: "Standard Room", price: 13500, beds: "2 beds" },
+    { name: "Presidential Suite", price: 19500, beds: "3 beds" },
+    { name: "Executive Room", price: 14500, beds: "1 bed" },
+    { name: "Penthouse Suite", price: 18000, beds: "3 beds" },
+    { name: "Family Suite", price: 15500, beds: "2 beds" },
+    { name: "Deluxe Suite", price: 17000, beds: "4 beds" },
+    { name: "Standard Room", price: 14000, beds: "2 beds" },
+    { name: "Presidential Suite", price: 20000, beds: "3 beds" },
+    { name: "Executive Room", price: 15000, beds: "1 bed" },
+    { name: "Penthouse Suite", price: 18500, beds: "3 beds" },
+    { name: "Family Suite", price: 16000, beds: "2 beds" }
+  ];
+  const [price, setPrice] = useState([10000]);
+
+  return (
+    <div className="max-w-7xl mx-auto h-screen">
+      <h2 className="text-center py-10">Rooms</h2>
+      <div className="flex flex-wrap gap-4 py-6">
+
+        <Popover >
+          <PopoverTrigger asChild>
+            <Button variant="outline" className='flex gap-2 justify-start'>
+              <House fontSize={20} />
+              Type of Room
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className='w-[300px] flex-col flex gap-4'>
+
+            <div className="flex flex-col gap-4">
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Delexue
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="term" />
+                <label
+                  htmlFor="term"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Presidential
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="ter" />
+                <label
+                  htmlFor="ter"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Standard
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="tes" />
+                <label
+                  htmlFor="tes"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Executive
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="te" />
+                <label
+                  htmlFor="te"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Family
+                </label>
+              </div>
+
+            </div>
+
+
+
+          </PopoverContent>
+        </Popover>
+        <Popover >
+          <PopoverTrigger asChild>
+            <Button variant="outline" className='flex gap-2 justify-start'>
+              <BedDoubleIcon fontSize={20} />
+              Beds
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className='w-[300px] flex-col flex gap-4'>
+
+            <div className="flex flex-col gap-4">
+
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  1 Beds
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  2 Beds
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  4 Beds
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  5 Beds
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  3 Beds
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox id="terms" />
+                <label
+                  htmlFor="terms"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  9 Beds
+                </label>
+              </div>
+
+
+            </div>
+
+
+
+          </PopoverContent>
+        </Popover>
+        <Popover >
+          <PopoverTrigger asChild>
+            <Button variant="outline" className='flex gap-2 justify-start'>
+              <p>PKR </p>
+              {price[0].toLocaleString()} Budget
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className='w-[300px] flex-col flex gap-4'>
+
+            <div className="flex flex-col gap-4">
+
+              <Slider
+                defaultValue={price}
+                onValueChange={(value) => { setPrice(value) }}
+                max={50000}
+                step={500} />
+
+
+
+
+
+            </div>
+
+
+
+          </PopoverContent>
+        </Popover>
+        <Dialog>
+          <DialogTrigger>
+            <Button variant="outline" className='flex gap-2 justify-start'>
+              {/* <House fontSize={20} /> */}
+              More Filters
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle className='text-center text-muted-foreground'>Filters</DialogTitle>
+              <DialogDescription>
+                <div className="flex flex-col gap-4">
+
+                  <div>
+                    <p className="text-lg mb-2">Ameneties</p>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+
+
+                    </div>
+
+                  </div>
+                  <div>
+                    <p className="text-lg mb-2">Facilities</p>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+
+
+                    </div>
+
+                  </div>
+                  <div>
+                    <p className="text-lg mb-2">Rules</p>
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+                      <div className="flex items-center space-x-2">
+                        <Checkbox id="terms" />
+                        <label
+                          htmlFor="terms"
+                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                        >
+                          Delexue
+                        </label>
+                      </div>
+
+
+                    </div>
+
+                  </div>
+
+
+
+                </div>
+
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mx-auto justify-center items-center p-6">
+
+
+
+        {
+          roomsArray.map((i, z) => (
+            <HotelCard key={z} name={i.name} price={i.price} beds={i.beds} />
+          ))
+        }
+      </div>
+    </div>
+  )
+}
+
+
+
+
+function HeroSection() {
+
+
+  return (
+    <div className="h-[100vh]   container mx-auto relative">
+      <div className="flex w-full h-full  ">
+        <div className="flex-1 w-full h-full">
+          <div className="flex flex-col w-full h-full justify-center gap-8 ">
+            <h1 className=" ">
+              Hotel, car & experiences <br />
+              By Karen Retreat
+            </h1>
+            <p className="">Accompanying us, you have a trip full of experiences. With Chisfis, booking accommodation, resort villas, hotels</p>
+            <Button className='w-fit'>
+              Start your Search
+            </Button>
+          </div>
+        </div>
+        <div className=" w-full h-full  flex justify-center items-center relative ">
+          <Image src={'/images/hero2.jpg'} alt="hero-img" width={600} height={1} className="rounded shadow-2xl shadow-primary/20 z-10" />
+        </div>
+      </div>
+      <SearchMenu />
+    </div>
+
+
+
+  )
+}
+
+function SearchMenu() {
+
+
+  return (
+
+    <div className="absolute bottom-3  w-full inset-x-0 p-2">
+      <div className="max-w-5xl mx-auto p-4 backdrop-blur-2xl  bg-background/70 text-foreground border rounded-full shadow-2xl shadow-primary/10  ">
+
+        <div className="flex justify-center gap-4 items-center px-8 ">
+          <div className="flex  items-center gap-2 w-full">
+            <label className="text-nowrap   ">
+              Check In - Check Out
+            </label>
+            <DatePickerWithRange />
+          </div>
+          <div className="flex  items-center gap-2 w-full">
+            <GuestsPicker />
+          </div>
+          <Search size={40} className="cursor-pointer" />
+        </div>
+
+      </div>
+
+    </div>
+
+
+  )
 }
