@@ -22,7 +22,7 @@ const GuestsPicker = () => {
     return (
         <Popover >
             <PopoverTrigger asChild>
-                <Button variant="outline" className='w-full flex gap-2 justify-start'>
+                <Button variant="outline" className='w-full sm:w-2/3 flex gap-2 justify-start'>
                     <PersonIcon fontSize={20} />
                     <div className='flex gap-1 items-center'>
                         <span>{guests.adults + guests.children + guests.infants} Guests </span>
