@@ -39,11 +39,6 @@ export default function Home() {
       </Hero>
       <HotelRooms />
 
-
-
-
-
-
     </main>
   );
 }
@@ -376,36 +371,6 @@ function HotelRooms() {
     </div>
   )
 }
-
-
-// function HeroSection() {
-
-//   return (
-//         <div className="h-[100vh]   container mx-auto relative">
-//           <div className="flex w-full h-full  ">
-//             <div className="flex-1 w-full h-full">
-//               <div className="flex flex-col w-full h-full justify-center gap-8 ">
-//                 <h1 className=" ">
-//                   Hotel, car & experiences <br />
-//                   By Karen Retreat
-//                 </h1>
-//                 <p className="">Accompanying us, you have a trip full of experiences. With Chisfis, booking accommodation, resort villas, hotels</p>
-//                 <Button className='w-fit'>
-//                   Start your Search
-//                 </Button>
-//               </div>
-//             </div>
-//             <div className=" w-full h-full hidden sm:flex justify-center items-center relative ">
-//               <Image src={'/images/hero2.jpg'} alt="hero-img" width={600} height={1} className="rounded shadow-2xl shadow-primary/20 z-10" />
-//             </div>
-//           </div>
-//           <SearchMenu />
-//         </div>
-
-
-
-//   )
-// }
 
 
 
