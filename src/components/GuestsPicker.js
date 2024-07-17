@@ -16,6 +16,18 @@ const GuestsPicker = () => {
         infants: 0,
     });
 
+
+    // const a = function AddGuests(number){
+    //     if (number>5){
+    //         return;
+    //     }
+
+    //     setGuests( )
+    // }
+
+
+
+
     return (
         <Popover >
             <PopoverTrigger asChild>
@@ -32,7 +44,8 @@ const GuestsPicker = () => {
                     <div className='flex items-center gap-2 '>
                         <Button  variant='outline' className='rounded-full border-primary ' onClick={() => { setGuests(preState => ({ ...preState, adults: preState.adults + 1 })) }} size={'icon'}>+</Button>
                         <span className='w-8 h-10 flex justify-center items-center'>{guests.adults}</span>
-                        <Button  variant='outline' className='rounded-full border-primary' onClick={() => setGuests(prevState => ({ ...prevState, adults: Math.max(1, prevState.adults - 1) }))} size={'icon'}>-</Button>
+                        <Button  variant='outline' className='rounded-full border-primary' 
+                            onClick={() => setGuests(prevState => ({ ...prevState, adults: Math.max(1, prevState.adults - 1) }))} size={'icon'}>-</Button>
                     </div>
                 </div>
                 <div className='flex items-center justify-between'>

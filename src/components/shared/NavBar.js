@@ -24,7 +24,7 @@ const NavBar = () => {
         <div className='fixed w-full top-10  z-20 text-foreground  '>
             <nav className='max-w-6xl mx-auto p-4 transition-all duration-300  rounded-full shadow-lg shadow-primary/10 backdrop-blur-2xl  bg-background/80 border '>
                 <div className='flex gap-10 items-center'>
-                    <p className='font-mono text-2xl font-bold text-center pl-4'>KAREN RETREAT</p>
+                    <p className='font-mono text-2xl font-bold text-center pl-4'>KEREN RETREAT</p>
                     <ul className=' hidden sm:flex gap-4 '>
                         <li><NavLink title='Home' href='/' /></li>
                         <li><NavLink title='Services' href='/services' /></li>

@@ -26,6 +26,14 @@ import { useEffect, useState } from "react";
 import Hero from "@/components/landing/Hero";
 import { Input } from "@/components/ui/input";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+
 
 
 
@@ -46,6 +54,9 @@ export default function Home() {
 function HotelRooms() {
 
 
+
+
+
   const roomsArray = [
     { name: "Deluxe Suite", price: 15000, beds: "3 beds" },
     { name: "Standard Room", price: 12000, beds: "2 beds" },
@@ -60,7 +71,7 @@ function HotelRooms() {
     { name: "Penthouse Suite", price: 17000, beds: "3 beds" },
     { name: "Family Suite", price: 14000, beds: "2 beds" },
     { name: "Deluxe Suite", price: 16000, beds: "4 beds" },
-   
+
   ];
   const [price, setPrice] = useState([10000]);
 
@@ -68,143 +79,6 @@ function HotelRooms() {
     <div className="max-w-7xl mx-auto h-screen">
       <h2 className="text-center py-10">Rooms</h2>
       <div className="flex flex-wrap gap-4 py-6">
-
-        <Popover >
-          <PopoverTrigger asChild>
-            <Button variant="outline" className='flex gap-2 justify-start'>
-              <House fontSize={20} />
-              Type of Room
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className='w-[300px] flex-col flex gap-4'>
-
-            <div className="flex flex-col gap-4">
-
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Delexue
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="term" />
-                <label
-                  htmlFor="term"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Presidential
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="ter" />
-                <label
-                  htmlFor="ter"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Standard
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="tes" />
-                <label
-                  htmlFor="tes"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Executive
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="te" />
-                <label
-                  htmlFor="te"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Family
-                </label>
-              </div>
-
-            </div>
-
-
-
-          </PopoverContent>
-        </Popover>
-        {/* <Popover >
-          <PopoverTrigger asChild>
-            <Button variant="outline" className='flex gap-2 justify-start'>
-              <BedDoubleIcon fontSize={20} />
-              Beds
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className='w-[300px] flex-col flex gap-4'>
-
-            <div className="flex flex-col gap-4">
-
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  1 Beds
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  2 Beds
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  4 Beds
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  5 Beds
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  3 Beds
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox id="terms" />
-                <label
-                  htmlFor="terms"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  9 Beds
-                </label>
-              </div>
-
-
-            </div>
-
-
-
-          </PopoverContent>
-        </Popover> */}
         <Popover >
           <PopoverTrigger asChild>
             <Button variant="outline" className='flex gap-2 justify-start'>
@@ -221,144 +95,13 @@ function HotelRooms() {
                 onValueChange={(value) => { setPrice(value) }}
                 max={50000}
                 step={500} />
-
-
-
-
-
             </div>
 
 
 
           </PopoverContent>
         </Popover>
-        <Dialog>
-          <DialogTrigger>
-            <Button variant="outline" className='flex gap-2 justify-start '>
-              {/* <House fontSize={20} /> */}
-              More Filters
-            </Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle className='text-center text-2xl text-foreground'>Filters</DialogTitle>
-              <DialogDescription>
-                <div className="flex flex-col gap-12 !text-foreground">
 
-                <div className="border-b pb-4 ">
-                    <p className="text-lg mb-6 text-left">Ameneties</p>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-                  <div className="border-b pb-4 ">
-                    <p className="text-lg mb-6 text-left">Facilities</p>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-                  <div className="border-b pb-4 ">
-                    <p className="text-lg mb-6 text-left">Rules</p>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <Checkbox id="terms" />
-                        <label
-                          htmlFor="terms"
-                          className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                        >
-                          Delexue
-                        </label>
-                      </div>
-
-
-                    </div>
-
-                  </div>
-
-
-
-                </div>
-
-              </DialogDescription>
-            </DialogHeader>
-          </DialogContent>
-        </Dialog>
 
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mx-auto justify-center items-center p-6">
@@ -374,12 +117,75 @@ function HotelRooms() {
 
 
 
+
+
+
+
+
+
 function SearchMenu() {
+  const roomTypes = [
+
+    {
+      name: "Deluxe",
+      price: 12000
+    },
+
+    {
+      name: "Deluxe River View",
+      price: 14000
+    },
+
+    {
+      name: "Exective River View",
+      price: 16000
+    },
+
+    {
+      name: "Exective Jacuzzi River View",
+      price: 20000
+    },
+
+    {
+      name: "Presendtial Suite River View",
+      price: 25000
+    },
+
+
+  ]
+
+
+  const [roomState, setRoomState] = useState(roomTypes[0])
   return (
     <div className="absolute bottom-3  w-full inset-x-0 p-2">
-      <div className="max-w-5xl mx-auto p-4 backdrop-blur-2xl  bg-background text-foreground sm:border rounded-lg  shadow-2xl shadow-primary/10  ">
+      <div className="max-w-6xl mx-auto p-4 backdrop-blur-2xl  bg-background text-foreground sm:border rounded-lg  shadow-2xl shadow-primary/10  ">
 
         <div className="flex flex-wrap md:flex-nowrap    justify-center gap-4 items-center px-8 ">
+
+          <div className="flex  flex-col items-center   gap-2 w-full">
+            <label className="text-nowrap   ">
+              Type Of Room
+            </label>
+            <Select onValueChange={(value) =>setRoomState(roomTypes[value])}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Deluxe" />
+              </SelectTrigger>
+              <SelectContent>
+                {
+                  roomTypes.map((i, z) => (
+                    <SelectItem key={i.name} onClick={() => { }} value={z}>{i.name}</SelectItem>
+                  ))
+                }
+              </SelectContent>
+            </Select>
+
+          </div>
+          <div className="flex  flex-col   gap-2 w-full">
+            <label className="text-nowrap   ">
+              Price
+            </label>
+            <Input className={'!disabled:text-white'} placeholder='120000' value={roomState?.price || 0} />
+          </div>
           <div className="flex  flex-col   gap-2 w-full">
             <label className="text-nowrap   ">
               Check In - Check Out
@@ -392,12 +198,12 @@ function SearchMenu() {
             </label>
             <Input placeholder='090078601' />
           </div>
-          <div className="flex flex-col  gap-2 w-full">
+          {/* <div className="flex flex-col  gap-2 w-full">
             <label className="text-nowrap   ">
               Number Of Guests
             </label>
             <GuestsPicker />
-          </div>
+          </div> */}
           <Button className='mt-auto w-full'>
             Submit
           </Button>
